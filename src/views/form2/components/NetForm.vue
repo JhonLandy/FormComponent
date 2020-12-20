@@ -57,7 +57,9 @@ export default {
             default: () => []
         }
     },
-    setup({ elements }) {
+    setup(props, context) {
+        console.log(context)
+        const { elements } = props
         // provide('currentInstance', 'kao')
         const state = reactive({
             form: {},

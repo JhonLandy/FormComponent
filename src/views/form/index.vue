@@ -1,6 +1,5 @@
 <template>
     <net-form ref="from" name="form" :elements="components" label-width="100px">
-
         <template v-slot:button="{handleSubmit}">
           <el-button @click="valid(handleSubmit)">提交</el-button>
           <el-button @click="doCount">{{ index }}</el-button>
@@ -242,7 +241,7 @@ export default {
       }
     }
     return {
-        index: [],
+        foo: '',
       components: freeze([project, dc_code1, dc_code2, id, isOpen, use_case, status, customer, callback]),
     }
   },

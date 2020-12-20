@@ -13,6 +13,24 @@ export default {
         const valid = handleSubmit => {
             const [isPass, fields] = handleSubmit()
         }
+        // const customer2 = {
+        //     formItem: {
+        //         label: '自定义组件',
+        //         rules: {required: true, message: '请选择时间', trigger: 'change'}
+        //     },
+        //     field: {
+        //         name: 'customer',
+        //         type: 'string'
+        //     },
+        //     createElement() {//这样直接写jsx也可以
+        //         return (
+        //             <el-radio-group>
+        //                 <el-radio-button value="1" label="自定义组件122"></el-radio-button>
+        //                 <el-radio-button value="2" label="自定义组件222"></el-radio-button>
+        //             </el-radio-group>
+        //         )
+        //     }
+        // }
         return {
             valid,
             components: [project, dc_code1, dc_code2, id, isOpen, use_case, status, customer, callback]

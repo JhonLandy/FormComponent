@@ -63,9 +63,8 @@ function Customer(props, context) {
     const { slots } = context
 
     if (!controlled) return//是否显示
-    const _this = currentInstance
     if (createElement) {//自定义组件的话直接返回vnode
-        return createElement.call(_this)
+        return createElement.call(null)
     }
     if (!element) return//元素标签不能为空
     const index = 0//用于同层获取属性，0表示第一层
@@ -77,8 +76,8 @@ function Customer(props, context) {
     }
     const compose  =
         options //根据options选项来选择模式
-            ? composeOptions.bind(_this, element, attrs, methods, options, index + 1)
-            : composeElements.bind(_this, element, attrs, methods, index + 1)
+            ? composeOptions.bind(null, element, attrs, methods, options, index + 1)
+            : composeElements.bind(null, element, attrs, methods, index + 1)
     return h(resolveComponent(_element), { ...other, ..._attrs, ...mapMethods.call(null, _methods) }, slots.default || compose())
 }
 Customer.props = {

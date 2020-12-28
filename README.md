@@ -87,8 +87,7 @@ change        | true,表示change时执行callback函数
 async         | true,表示开启初始化执行callback函数
 
 
-- element
-
+### element
 ```js
 //第一种方式
 element: ['el-select', 'el-option']
@@ -105,8 +104,7 @@ element: [ 'el-select', [
   ],
 ```
 
-- formItem
-
+### formItem
 定义el-form-item属性
 ```js
 formItem: {
@@ -118,8 +116,7 @@ formItem: {
 }
 ```
 
-- field
-
+### field
 定义数据类型和key
 ```js
  field: {
@@ -128,8 +125,7 @@ formItem: {
 }
 ```
 
-- permission
-
+### permission
 控制是否要显示
 ```js
 permission: () => {
@@ -141,8 +137,7 @@ permission: () => {
 }
 ```
 
-- methods
-
+### methods
 配置Customer组件的事件
 ```js
  methods: {
@@ -151,8 +146,7 @@ permission: () => {
     }
 }
 ```
-- attrs
-
+### attrs
 配置Customer组件props属性
 ```js
 attrs: [
@@ -163,7 +157,7 @@ attrs: [
 ],
 ```
 
-- callback(sign, next, param)
+### callback(sign, next, param)
 <code>sign</code>
 <code>next:</code>可以执行其他组价的callback函数，实现联动，如next('project')('async')()
 <code>param:</code>获取全部参数

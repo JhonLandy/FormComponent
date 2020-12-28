@@ -19,6 +19,7 @@ example:
 动态组件选用函数式组件进行设计，vue3的函数式组件和vue2的不一样。<a href="#">动态组件</a>
 
 配置参数:
+
 name | introduction  
 -|-|-
 element       | 标签名，如div，p，el-input等

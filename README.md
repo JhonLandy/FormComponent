@@ -68,7 +68,7 @@ export default {
     }
 }
 ```
-<br/>
+
 ### 配置参数
 
 name | introduction  
@@ -88,7 +88,7 @@ async         | true,表示开启初始化执行callback函数
 
 
 - element
-<br/>
+
 ```js
 //第一种方式
 element: ['el-select', 'el-option']
@@ -106,6 +106,7 @@ element: [ 'el-select', [
 ```
 - formItem
 <br/>
+
 定义el-form-item属性
 ```js
 formItem: {
@@ -141,6 +142,7 @@ permission: () => {
 
 - methods
 <br/>
+
 配置Customer组件的事件
 ```js
  methods: {
@@ -151,6 +153,7 @@ permission: () => {
 ```
 - attrs
 <br/>
+
 配置Customer组件props属性
 ```js
 attrs: [
@@ -163,6 +166,7 @@ attrs: [
 
 - callback(sign, next, param)
 <br/>
+
 <code>sign</code>
 <code>next:</code>可以执行其他组价的callback函数，实现联动，如next('project')('async')()
 <code>param:</code>获取全部参数

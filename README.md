@@ -20,6 +20,7 @@ example:
 
 配置参数:
 name          | introduction  |
+-|-|-
 element       | 标签名，如div，p，el-input等
 options       | 用于el-select组件生成选项，不是select组件可以忽略不写
 attrs         | 动态组件的属性，相当于props或vue2的$attrs属性

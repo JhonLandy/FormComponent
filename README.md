@@ -18,7 +18,7 @@
 ```
 
 ## 设计动态组件
-动态组件选用函数式组件进行设计，vue3的函数式组件和vue2的不一样。<a href="/src/views/component/Customer.js">动态组件</a>
+动态组件选用函数式组件进行设计，vue3的函数式组件和vue2的不一样。<a href="https://github.com/JhonLandy/FormComponent/blob/master/src/views/component/Customer.js" target="_blank">动态组件</a>
 
 ### 配置参数
 
@@ -32,7 +32,7 @@ createElement | 相当于render函数，直接返回vnode就可渲染组件，�
 
 
 ## FormComponent
-FormComponent组件（动态表单组件）是基于动态组件（Customer组件）构建的，Customer组件用于渲染表单。下面是调用方法，想使用jsx语法，直接调用createElement方法。<a href="/src/views/Vue3Compoent/index.vue">动态表单组件</a>
+FormComponent组件（动态表单组件）是基于动态组件（Customer组件）构建的，Customer组件用于渲染表单。下面是调用方法，想使用jsx语法，直接调用createElement方法。<a href="https://github.com/JhonLandy/FormComponent/blob/master/src/views/Vue3Compoent/index.vue" target="_blank">动态表单组件</a>
 ```js
 import NetForm from "./index"
 import { project, use_case, customer } from '../components/config.js'

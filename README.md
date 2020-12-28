@@ -23,7 +23,7 @@
 ### 配置参数
 
 name | introduction  
--|-
+:--|:--
 element       | 标签名，如div，p，el-input等
 options       | 用于el-select组件生成选项，不是select组件可以忽略不写
 attrs         | 动态组件的属性，相当于props或vue2的$attrs属性
@@ -84,7 +84,7 @@ export default {
 ### 配置参数
 
 name | introduction  
--|-
+:--|:--
 element       | 标签名，如div，p，el-input等
 options       | 用于el-select组件生成选项，不是select组件可以忽略不写
 attrs         | 动态组件的属性，相当于props或vue2的$attrs属性
@@ -170,7 +170,7 @@ attrs: [
 ```
 
 ### callback(sign, next, param)
-<code>sign</code><br/>
+<code>sign:</code>参数值有async/focus/change, 表示在不用事件下执行<br/>
 <code>next:</code>可以执行其他组价的callback函数，实现联动，如next('project')('async')()<br/>
 <code>param:</code>获取全部参数
 ```js

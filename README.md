@@ -18,7 +18,7 @@
 ```
 
 ## 设计动态组件
-动态组件选用函数式组件进行设计，vue3的函数式组件和vue2的不一样。<a href="https://github.com/JhonLandy/FormComponent/blob/master/src/views/component/Customer.js" target="_blank">动态组件</a>
+动态组件选用函数式组件进行设计，vue3的函数式组件和vue2的不一样。<a href="https://github.com/JhonLandy/FormComponent/blob/master/src/views/components/Customer.js" target="_blank">动态组件</a>
 
 ### 配置参数
 

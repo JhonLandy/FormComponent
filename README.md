@@ -19,8 +19,7 @@ example:
 动态组件选用函数式组件进行设计，vue3的函数式组件和vue2的不一样。<a href="#">动态组件</a>
 
 配置参数:
-name | 属性名 |  说明  
--|-|-
+name          | introduction  
 element       | 标签名，如div，p，el-input等
 options       | 用于el-select组件生成选项，不是select组件可以忽略不写
 attrs         | 动态组件的属性，相当于props或vue2的$attrs属性

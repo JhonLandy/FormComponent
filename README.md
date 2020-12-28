@@ -33,6 +33,18 @@ createElement | 相当于render函数，直接返回vnode就可渲染组件，�
 
 ## FormComponent
 FormComponent组件（动态表单组件）是基于动态组件（Customer组件）构建的，Customer组件用于渲染表单。下面是调用方法，想使用jsx语法，直接调用createElement方法。<a href="https://github.com/JhonLandy/FormComponent/blob/master/src/views/components/NetForm.vue" target="_blank">动态表单组件</a>和<a href="https://github.com/JhonLandy/FormComponent/blob/master/src/views/Vue3Compoent/index.vue" target="_blank">demo.vue</a>
+### template:
+```js
+<template>
+    <net-form ref="from" name="form" :elements="components" label-width="100px">
+        <template v-slot:button="{handleSubmit}">
+          <el-button @click="valid(handleSubmit)">提交</el-button>
+          <el-button @click="doCount">{{ index }}</el-button>
+       </template>
+    </net-form>
+</template>
+```
+### script:
 ```js
 import NetForm from "./index"
 import { project, use_case, customer } from '../components/config.js'
@@ -158,8 +170,8 @@ attrs: [
 ```
 
 ### callback(sign, next, param)
-<code>sign</code>
-<code>next:</code>可以执行其他组价的callback函数，实现联动，如next('project')('async')()
+<code>sign</code><br/>
+<code>next:</code>可以执行其他组价的callback函数，实现联动，如next('project')('async')()<br/>
 <code>param:</code>获取全部参数
 ```js
 callback: (sign, next, param) => {

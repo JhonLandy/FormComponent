@@ -3,7 +3,6 @@
         ref="formRef"
         :model="form"
         v-bind="$attrs"
-        v-on="$listeners"
     >
         <template
             v-for="({formItem, createElement, element, attrs, methods, change, focus, options, controlled, field}, index) in list"
@@ -58,7 +57,6 @@ export default {
         }
     },
     setup(props, context) {
-        console.log(context)
         const { elements } = props
         // provide('currentInstance', 'kao')
         const state = reactive({

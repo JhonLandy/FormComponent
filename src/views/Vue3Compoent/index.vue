@@ -5,7 +5,7 @@
 
 <script>
 import NetForm from "./index"
-import { project, use_case, customer, callback, dc_code2, dc_code1, isOpen, id, status } from './components/config'
+import { project, use_case, customer, callback, dc_code2, dc_code1, isOpen, id, status } from '../components/config.js'
 export default {
     name: 'demo',
     components: { NetForm },

@@ -1,5 +1,5 @@
 module.exports = {
-    publicPath: '/form',
+    publicPath: '/Vue3Compoent',
     runtimeCompiler: true,
     devServer: {
         proxy: {

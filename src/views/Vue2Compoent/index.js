@@ -1,4 +1,4 @@
-import NetForm from './components/NetForm'
+import NetForm from '../components/NetForm'
 
 export default NetForm
 

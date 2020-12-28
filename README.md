@@ -152,7 +152,6 @@ permission: () => {
 }
 ```
 - attrs
-<br/>
 
 配置Customer组件props属性
 ```js

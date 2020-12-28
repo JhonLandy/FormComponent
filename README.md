@@ -32,7 +32,7 @@ createElement | 相当于render函数，直接返回vnode就可渲染组件，�
 
 
 ## FormComponent
-FormComponent组件（动态表单组件）是基于动态组件（Customer组件）构建的，Customer组件用于渲染表单。下面是调用方法，想使用jsx语法，直接调用createElement方法。<a href="https://github.com/JhonLandy/FormComponent/blob/master/src/views/Vue3Compoent/index.vue" target="_blank">动态表单组件</a>
+FormComponent组件（动态表单组件）是基于动态组件（Customer组件）构建的，Customer组件用于渲染表单。下面是调用方法，想使用jsx语法，直接调用createElement方法。<a href="https://github.com/JhonLandy/FormComponent/blob/master/src/views/components/NetForm.vue" target="_blank">动态表单组件</a>和<a href="https://github.com/JhonLandy/FormComponent/blob/master/src/views/Vue3Compoent/index.vue" target="_blank">demo.vue</a>
 ```js
 import NetForm from "./index"
 import { project, use_case, customer } from '../components/config.js'
@@ -395,4 +395,4 @@ const callback = {
 
 ```
 ## Vue3和Vue2的差异
-我也在自己的博客做了一些总结，链接：<https://sunnychenglang.com/sidebar/vue/vue3.0/Vue3%E9%87%87%E5%9D%91%E7%AC%94%E8%AE%B0.html>。欢迎指正
+我也在自己的博客做了一些总结，<a href="https://sunnychenglang.com/sidebar/vue/vue3.0/Vue3%E9%87%87%E5%9D%91%E7%AC%94%E8%AE%B0.html" target="_blank">点击友情链接</a>。欢迎指正

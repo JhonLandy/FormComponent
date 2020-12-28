@@ -188,7 +188,8 @@ createElement() {//这样直接写jsx也可以
     return (
         <el-radio-group>
             <el-radio-button value="1" label="自定义组件122"></el-radio-button>
-            <el-radio-button value="2" label="自定义组件222"></el-radio-button>             </el-radio-group>
+            <el-radio-button value="2" label="自定义组件222"></el-radio-button>             
+        </el-radio-group>
     )
 }
 ```

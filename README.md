@@ -104,8 +104,8 @@ element: [ 'el-select', [
     ],
   ],
 ```
+
 - formItem
-<br/>
 
 定义el-form-item属性
 ```js
@@ -119,6 +119,7 @@ formItem: {
 ```
 
 - field
+
 定义数据类型和key
 ```js
  field: {
@@ -128,7 +129,7 @@ formItem: {
 ```
 
 - permission
-<br/>
+
 控制是否要显示
 ```js
 permission: () => {
@@ -141,7 +142,6 @@ permission: () => {
 ```
 
 - methods
-<br/>
 
 配置Customer组件的事件
 ```js
@@ -165,8 +165,6 @@ attrs: [
 ```
 
 - callback(sign, next, param)
-<br/>
-
 <code>sign</code>
 <code>next:</code>可以执行其他组价的callback函数，实现联动，如next('project')('async')()
 <code>param:</code>获取全部参数

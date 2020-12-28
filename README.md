@@ -8,8 +8,9 @@
 ## 设计思路
 
 动态表单组件，很容易知道，表单里的小组件是根据动态配置参数生成。那到底是什么做到的？思路很简单，是这样的： 设计一个动态组件，可以根据动态配置参数生成对应的组件，如，el-input组件、el-select组件。而且设计的动态组件是完全可控的，而vue现有的component不可控的。
-<br/>
-example:
+
+### example
+
 ```template
 <template>
     <Customer element="el-input" />
@@ -18,8 +19,8 @@ example:
 
 ## 设计动态组件
 动态组件选用函数式组件进行设计，vue3的函数式组件和vue2的不一样。<a href="#">动态组件</a>
-<br/>
-配置参数:
+
+### 配置参数
 
 name | introduction  
 -|-
@@ -68,7 +69,8 @@ export default {
 }
 ```
 <br/>
-配置参数:
+### 配置参数
+
 name | introduction  
 -|-
 element       | 标签名，如div，p，el-input等
@@ -86,6 +88,7 @@ async         | true,表示开启初始化执行callback函数
 
 
 - element
+<br/>
 ```js
 //第一种方式
 element: ['el-select', 'el-option']
@@ -102,6 +105,7 @@ element: [ 'el-select', [
   ],
 ```
 - formItem
+<br/>
 定义el-form-item属性
 ```js
 formItem: {
@@ -123,6 +127,7 @@ formItem: {
 ```
 
 - permission
+<br/>
 控制是否要显示
 ```js
 permission: () => {
@@ -135,6 +140,7 @@ permission: () => {
 ```
 
 - methods
+<br/>
 配置Customer组件的事件
 ```js
  methods: {
@@ -144,6 +150,7 @@ permission: () => {
 }
 ```
 - attrs
+<br/>
 配置Customer组件props属性
 ```js
 attrs: [
@@ -155,6 +162,7 @@ attrs: [
 ```
 
 - callback(sign, next, param)
+<br/>
 <code>sign</code>
 <code>next:</code>可以执行其他组价的callback函数，实现联动，如next('project')('async')()
 <code>param:</code>获取全部参数

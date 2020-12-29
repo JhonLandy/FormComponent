@@ -170,7 +170,7 @@ attrs: [
 ```
 
 ### callback(sign, next, param)
-<code>sign:</code>参数值有async/focus/change, 表示在不用事件下执行<br/>
+<code>sign:</code>参数值有async/focus/change/remote, 表示在不同事件处理程序下执行<br/>
 <code>next:</code>可以执行其他组件的callback函数，实现联动，如next('project')('async')()<br/>
 <code>param:</code>获取全部参数
 ```js

@@ -141,7 +141,7 @@ formItem: {
 控制是否要显示
 ```js
 permission: () => {
-    if(isAfmin) {
+    if(isAdmin) {
         return true
     } else {
         return false

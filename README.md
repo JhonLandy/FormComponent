@@ -2,12 +2,11 @@
 
 ## 介绍
 
-动态组件是基于Vue3 和 element-plus的。基于vue2的代码，使用vue3的compositionAPI重构出来的。只要简单传入配置参数，就可以可以使用表单，提高开发效率。
-
+动态组件是基于Vue3 和 <a href="https://github.com/element-plus/element-plus">element-plus组件库</a>.
 
 ## 设计思路
 
-动态表单组件，很容易知道，表单里的小组件是根据动态配置参数生成。那到底是什么做到的？思路很简单，是这样的： 设计一个动态组件，可以根据动态配置参数生成对应的组件，如，el-input组件、el-select组件。而且设计的动态组件是完全可控的，而vue现有的component不可控的。
+动态表单组件，很容易知道，表单里的小组件是根据动态配置参数生成。那到底是什么做到的？思路很简单，是这样的： 设计一个动态组件，可以根据动态配置参数(传入组件名称)生成对应的组件，如，el-input组件、el-select组件。而且设计的动态组件是完全可控的，而vue现有的component不可控的。
 
 ### example
 
@@ -19,7 +18,66 @@
 
 ## 设计动态组件
 动态组件选用函数式组件进行设计，vue3的函数式组件和vue2的不一样。<a href="https://github.com/JhonLandy/FormComponent/blob/master/src/views/components/Customer.js" target="_blank">动态组件</a>
+### 原理
+关键是函数式组件。没有额外的生命周期,钩子函数，this等，占用内存少，性能好，直接渲染。vue3和vue2的函数式组件是有差别的，简单介绍一下：
 
+<strong>vue2:</strong>
+```js
+export default {
+
+    functional: true,
+
+    inject: ['currentInstance'],
+
+    props: {
+        element: {
+            required: true,
+            type: [String, Array],
+            default: ''
+        }
+    }
+    ...
+}
+```
+vue3里的函数式组件,是直接写一个函数返回，props直接在函数（函数也是object）上定义，也不用额外写<code>functional: true</code>配置。
+<strong>vue3:</strong>
+```js
+export default function Customer(props, context) {
+    //...
+}
+Customer.props = {
+    element: {
+        required: true,
+        type: [String, Array],
+        default: ''
+    }
+    ...
+}
+```
+函数式组件详细配置请看这里：<a href="https://github.com/JhonLandy/WriteVueOriginalCode/blob/master/src/view/form/components/Customer.js">vue2版</a> 和 <a href="https://github.com/JhonLandy/FormComponent/blob/master/src/views/components/Customer.js">vue3版</a>。好了，介绍到这里，下面重点介绍：
+
+先导入几个重要的函数：
+```js
+import { h, resolveComponent, inject } from 'vue'
+```
+h是用来产生虚拟dom，resolveComponent是获取组件vnode,inject就是获取跨组件的数据。下面重要部分来了：
+```js
+function Customer(props, context) {
+    const { element, options, methods, createElement, controlled, attrs, ...other } = props
+    const { slots } = context
+    ...
+    const compose  =
+        options //根据options选项来选择模式
+            ? composeOptions.bind(null, element, attrs, methods, options, index + 1)
+            : composeElements.bind(null, element, attrs, methods, index + 1)
+    return h(resolveComponent(_element), { ...other, ..._attrs, ...mapMethods.call(null, _methods) }, slots.default || compose())
+}
+Customer.props = {
+  ...
+}
+export default Customer
+```
+首先，通过函数props获取外面挂载的属性：element, options, methods, createElement, controlled, attrs。context指的是上下文，可以获取slots等相关属性。<code>compose()</code>是一个用于递归遍历的子元素标签生成虚拟dom， <code>slots.default</code>就是插槽内容。（<code>slots.default()</code>效果一样）实现原理大概就是这样啦！！
 ### 配置参数
 
 name | introduction  

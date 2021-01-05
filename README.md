@@ -1,4 +1,4 @@
-# 动态表单组件
+# 动态表单组件🎉
 
 ## 介绍
 
@@ -39,8 +39,9 @@ export default {
     ...
 }
 ```
-vue3里的函数式组件,是直接写一个函数返回，props直接在函数（函数也是object）上定义，也不用额外写<code>functional: true</code>配置。
 <strong>vue3:</strong>
+<br/>
+vue3里的函数式组件,是直接写一个函数返回，props直接在函数（函数也是object）上定义，也不用额外写<code>functional: true</code>配置。
 ```js
 export default function Customer(props, context) {
     //...
@@ -56,11 +57,11 @@ Customer.props = {
 ```
 函数式组件详细配置请看这里：<a href="https://github.com/JhonLandy/WriteVueOriginalCode/blob/master/src/view/form/components/Customer.js">vue2版</a> 和 <a href="https://github.com/JhonLandy/FormComponent/blob/master/src/views/components/Customer.js">vue3版</a>。好了，介绍到这里，下面重点介绍：
 
-先导入几个重要的函数：
+先导入几个重要的函数。
 ```js
 import { h, resolveComponent, inject } from 'vue'
 ```
-h是用来产生虚拟dom，resolveComponent是获取组件vnode,inject就是获取跨组件的数据。下面重要部分来了：
+h是用来产生虚拟dom，resolveComponent是获取组件vnode，inject就是获取跨组件的数据。下面重要部分来了：
 ```js
 function Customer(props, context) {
     const { element, options, methods, createElement, controlled, attrs, ...other } = props
@@ -77,7 +78,7 @@ Customer.props = {
 }
 export default Customer
 ```
-首先，通过函数props获取外面挂载的属性：element, options, methods, createElement, controlled, attrs。context指的是上下文，可以获取slots等相关属性。<code>compose()</code>是一个用于递归遍历的子元素标签生成虚拟dom， <code>slots.default</code>就是插槽内容。（<code>slots.default()</code>效果一样）实现原理大概就是这样啦！！
+首先，通过函数props获取外面挂载的属性：element, options, methods, createElement, controlled, attrs。context指的是上下文，可以获取slots等相关属性。<code>compose()</code>是一个用于递归遍历的子元素标签生成虚拟dom（逻辑有点绕，不要嫌弃，就是递归的逻辑😩）， <code>slots.default</code>就是插槽内容。（<code>slots.default()</code>效果一样）实现原理大概就是这样啦！！
 ### 配置参数
 
 name | introduction  
@@ -478,4 +479,4 @@ const callback = {
 
 ```
 ## Vue3和Vue2的差异
-我也在这里做了一些总结，<a href="https://sunnychenglang.com/sidebar/vue/vue3.0/Vue3%E9%87%87%E5%9D%91%E7%AC%94%E8%AE%B0.html" target="_blank">点击友情链接</a>。欢迎指正！！！
+我也在这里做了一些总结，<a href="https://sunnychenglang.com/sidebar/vue/vue3.0/Vue3%E9%87%87%E5%9D%91%E7%AC%94%E8%AE%B0.html" target="_blank">点击友情链接</a>。欢迎指正！！！✿✿

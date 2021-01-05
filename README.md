@@ -21,7 +21,7 @@
 ### 原理
 关键是函数式组件。没有额外的生命周期,钩子函数，this等，占用内存少，性能好，直接渲染。vue3和vue2的函数式组件是有差别的，简单介绍一下：
 
-<strong>vue2:</strong>
+<strong>🚀vue2:</strong>
 ```js
 export default {
 
@@ -39,7 +39,7 @@ export default {
     ...
 }
 ```
-<strong>vue3:</strong>
+<strong>🚀vue3:</strong>
 <br/>
 vue3里的函数式组件,是直接写一个函数返回，props直接在函数（函数也是object）上定义，也不用额外写<code>functional: true</code>配置。
 ```js

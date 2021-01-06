@@ -367,58 +367,6 @@ const customer = {
   }
 }
 
-const status =  {
-  field: {
-      name: 'status',
-      type: 'string'
-  },
-  formItem: {
-    label: '状态',
-    rules: {required: true, message: '请至少选择一个活动性质', trigger: 'change'}
-  },
-  element: ['el-radio-group', ['el-radio-button', 'el-radio-button']],
-  controlled: 'isOpen',
-}
-
-const callback = {
-  field: {
-      name: 'callback',
-      type: 'string'
-  },
-  formItem: {
-    label: '回调函数',
-    rules: {required: true, message: '请至少选择一个活动性质', trigger: 'change'}
-  },
-  element: ['el-select', 'el-option-group', 'el-option'],
-  // focus: true,//表示focus时执行callback函数
-  // change: true,//表示change时执行callback函数
-  async:true,//表示开启初始化执行callback函数
-  callback: (sign, next, param) => {
-    return new Promise((resolve) => {
-      resolve([
-        {
-          label: '广东22',
-          options:[
-            {
-              label: 'guangdong',
-              value: '0'
-            }
-          ]
-        },
-        {
-          label: '北京33',
-          options:[
-            {
-              label: 'beijing',
-              value: '1'
-            }
-          ]
-        }
-      ])
-    })
-  }
-}
-
 ```
 ### 总结
 我也在这里做了一些总结，关于Vue3和Vue2的差异，<a href="https://sunnychenglang.com/sidebar/vue/vue3.0/Vue3%E9%87%87%E5%9D%91%E7%AC%94%E8%AE%B0.html" target="_blank">点击友情链接</a>。欢迎指正！！！🌹🌹

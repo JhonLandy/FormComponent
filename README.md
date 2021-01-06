@@ -91,9 +91,9 @@ createElement | 相当于render函数，直接返回vnode就可渲染组件，�
 
 
 ## FormComponent
-FormComponent组件（动态表单组件）是基于动态组件（Customer组件）构建的，Customer组件用于渲染表单。想使用<a href="https://github.com/vuejs/jsx-next" target="_blank">jsx语法</a>，直接调用createElement方法。<a href="https://github.com/JhonLandy/FormComponent/blob/master/src/views/components/NetForm.vue" target="_blank">动态表单组件</a>和<a href="https://github.com/JhonLandy/FormComponent/blob/master/src/views/Vue3Compoent/index.vue" target="_blank">demo.vue</a>。下面看看是怎么基于动态组件（Customer组件实现动态表单组件：
+FormComponent组件（动态表单组件）是基于动态组件（Customer组件）构建的，Customer组件用于渲染表单。想使用<a href="https://github.com/vuejs/jsx-next" target="_blank">jsx语法</a>，直接调用createElement方法。<a href="https://github.com/JhonLandy/FormComponent/blob/master/src/views/components/NetForm.vue" target="_blank">动态表单组件</a>和<a href="https://github.com/JhonLandy/FormComponent/blob/master/src/views/Vue3Compoent/index.vue" target="_blank">demo.vue</a>。下面看看是怎么基于动态组件（Customer组件）实现动态表单组件：
 ### template:
-vue3在template使用上和原来的一样，基本没啥太大变化。
+这里定义咱们写好的<code>Customer</code>动态组件。vue3在template使用上和原来的一样，基本没啥太大变化。
 ```html
 <template>
     ....            
@@ -112,7 +112,7 @@ vue3在template使用上和原来的一样，基本没啥太大变化。
 </template>
 ```
 ### script:
-在这里vue3使用和vue2就有区别了。vue2的都是OptionAPI,又长又臭，关系不清晰，代码逻辑不能复用，不利于维护。现在vue3建议使用compostionAPI（当然也可以用原来的方式，好像会有坑），直接一个setup函数（this为undefind），相当于调用了beforeCreate,Created钩子，最后return 相关变量、方法，以便在templat中使用。
+在这里我们定义相关逻辑，做一些数据操作，如获取props、代理数据等。在这里vue3使用和vue2就有区别了。vue2的都是OptionAPI,又长又臭，关系不清晰，代码逻辑不能复用，不利于维护。现在vue3建议使用compostionAPI（当然也可以用原来的方式，好像会有坑），这里直接一个setup函数（this为undefind），相当于调用了beforeCreate,Created钩子，最后return 相关变量、方法，以便在templat中使用。
 ```js
 import Customer from './Customer.js' //函数式组件实现自定义组件
 import { watch, ref, nextTick, reactive, toRefs, provide } from 'vue'
@@ -159,52 +159,6 @@ focus         | true,表示focus时执行callback函数
 change        | true,表示change时执行callback函数
 async         | true,表示开启初始化执行callback函数
 
-### 例子
-```js
-<template>
-    <net-form ref="from" name="form" :elements="components" label-width="100px">
-        <template v-slot:button="{handleSubmit}">
-          <el-button @click="valid(handleSubmit)">提交</el-button>
-          <el-button @click="doCount">{{ index }}</el-button>
-       </template>
-    </net-form>
-</template>
-```
-```js
-import NetForm from "./index"
-import { project, use_case, customer } from '../components/config.js'
-export default {
-    name: 'demo',
-    components: { NetForm },
-    setup() {
-        const valid = handleSubmit => {
-            const [isPass, fields] = handleSubmit()
-        }
-        const customer2 = {
-             formItem: {
-                 label: '自定义组件',
-                 rules: {required: true, message: '请选择时间', trigger: 'change'}
-            },
-            field: {
-                name: 'customer',
-                type: 'string'
-            },
-            createElement() {//这样直接写jsx也可以
-                return (
-                    <el-radio-group>
-                        <el-radio-button value="1" label="自定义组件122"></el-radio-button>
-                        <el-radio-button value="2" label="自定义组件222"></el-radio-button>
-                    </el-radio-group>
-                )
-            }
-        }
-        return {
-            valid,
-            components: [project, use_case, customer, customer2]
-        }
-    }
-}
-```
 ### element
 ```js
 //第一种方式
@@ -299,9 +253,55 @@ createElement() {//这样直接写jsx也可以
     )
 }
 ```
-
-### 完整用例
+### 使用例子
 ```js
+<template>
+    <net-form ref="from" name="form" :elements="components" label-width="100px">
+        <template v-slot:button="{handleSubmit}">
+          <el-button @click="valid(handleSubmit)">提交</el-button>
+          <el-button @click="doCount">{{ index }}</el-button>
+       </template>
+    </net-form>
+</template>
+```
+```js
+import NetForm from "./index"
+import { project, use_case, customer } from '../components/config.js'
+export default {
+    name: 'demo',
+    components: { NetForm },
+    setup() {
+        const valid = handleSubmit => {
+            const [isPass, fields] = handleSubmit()
+        }
+        const customer2 = {
+             formItem: {
+                 label: '自定义组件',
+                 rules: {required: true, message: '请选择时间', trigger: 'change'}
+            },
+            field: {
+                name: 'customer',
+                type: 'string'
+            },
+            createElement() {//这样直接写jsx也可以
+                return (
+                    <el-radio-group>
+                        <el-radio-button value="1" label="自定义组件122"></el-radio-button>
+                        <el-radio-button value="2" label="自定义组件222"></el-radio-button>
+                    </el-radio-group>
+                )
+            }
+        }
+        return {
+            valid,
+            components: [project, use_case, customer, customer2]
+        }
+    }
+}
+```
+### 配置组件
+```js
+// config.js
 import { h, resolveComponent } from 'vue'
 const project =  {
     field: {

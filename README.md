@@ -91,8 +91,75 @@ createElement | 相当于render函数，直接返回vnode就可渲染组件，�
 
 
 ## FormComponent
-FormComponent组件（动态表单组件）是基于动态组件（Customer组件）构建的，Customer组件用于渲染表单。下面是调用方法，想使用<a href="https://github.com/vuejs/jsx-next" target="_blank">jsx语法</a>，直接调用createElement方法。<a href="https://github.com/JhonLandy/FormComponent/blob/master/src/views/components/NetForm.vue" target="_blank">动态表单组件</a>和<a href="https://github.com/JhonLandy/FormComponent/blob/master/src/views/Vue3Compoent/index.vue" target="_blank">demo.vue</a>
+FormComponent组件（动态表单组件）是基于动态组件（Customer组件）构建的，Customer组件用于渲染表单。想使用<a href="https://github.com/vuejs/jsx-next" target="_blank">jsx语法</a>，直接调用createElement方法。<a href="https://github.com/JhonLandy/FormComponent/blob/master/src/views/components/NetForm.vue" target="_blank">动态表单组件</a>和<a href="https://github.com/JhonLandy/FormComponent/blob/master/src/views/Vue3Compoent/index.vue" target="_blank">demo.vue</a>。下面看看是怎么基于动态组件（Customer组件实现动态表单组件：
 ### template:
+vue3在template使用上和原来的一样，基本没啥太大变化。
+```html
+<template>
+    ....            
+    <Customer
+        size="small"
+        :element="element"
+        v-model="form[field.name]"
+        :options="asyncOptions[field.name] || options"
+        @change="change && matchCallback(field.name)('change')"
+        @focus="focus && matchCallback(field.name)('focus')"
+        :methods="methods"
+        :createElement="createElement"
+        :attrs="attrs"
+    />
+    ...
+</template>
+```
+### script:
+在这里vue3使用和vue2就有区别了。vue2的都是OptionAPI,又长又臭，关系不清晰，代码逻辑不能复用，不利于维护。现在vue3建议使用compostionAPI（当然也可以用原来的方式，好像会有坑），直接一个setup函数（this为undefind），相当于调用了beforeCreate,Created钩子，最后return 相关变量、方法，以便在templat中使用。
+```js
+import Customer from './Customer.js' //函数式组件实现自定义组件
+import { watch, ref, nextTick, reactive, toRefs, provide } from 'vue'
+export default {
+    //...
+    setup(props, context) {
+        const { elements } = props
+        const state = reactive({
+            form: {},
+            list: [],
+            asyncOptions: {},
+            callbacksMap:{},
+            callbacksQueue: []
+        })
+        const formRef = ref(null)
+        //...
+        return {
+            ...toRefs(state),
+            resetForm,
+            handleSubmit,
+            matchCallback,
+            attrsConvert,
+            expression,
+            list: [...list],
+            formRef
+        }
+    }
+}
+```
+### 配置参数
+
+name | introduction  
+:--|:--
+element       | 标签名，如div，p，el-input等
+options       | 用于el-select组件生成选项，不是select组件可以忽略不写
+attrs         | 动态组件的属性，相当于props或vue2的$attrs属性
+methods       | 事件处理程序，用于传入自定义事件，用于在组件内部调用$emit
+createElement | 相当于render函数，直接返回vnode就可渲染组件，其余参数不用写，因为它的执行优先级最高
+formItem      | 动态表单中有el-form-item组件生成，这里动态配置它的参数
+field         | 用于动态生成表单组件内部的参数，每个参数指的表单里的组件对应的v-model。执行表单提交时可获取对应的值。
+permission    | 用于权限认证
+callback      | 用于给el-select组件异步请求获取数据
+focus         | true,表示focus时执行callback函数
+change        | true,表示change时执行callback函数
+async         | true,表示开启初始化执行callback函数
+
+### 例子
 ```js
 <template>
     <net-form ref="from" name="form" :elements="components" label-width="100px">
@@ -103,7 +170,6 @@ FormComponent组件（动态表单组件）是基于动态组件（Customer组�
     </net-form>
 </template>
 ```
-### script:
 ```js
 import NetForm from "./index"
 import { project, use_case, customer } from '../components/config.js'
@@ -139,25 +205,6 @@ export default {
     }
 }
 ```
-
-### 配置参数
-
-name | introduction  
-:--|:--
-element       | 标签名，如div，p，el-input等
-options       | 用于el-select组件生成选项，不是select组件可以忽略不写
-attrs         | 动态组件的属性，相当于props或vue2的$attrs属性
-methods       | 事件处理程序，用于传入自定义事件，用于在组件内部调用$emit
-createElement | 相当于render函数，直接返回vnode就可渲染组件，其余参数不用写，因为它的执行优先级最高
-formItem      | 动态表单中有el-form-item组件生成，这里动态配置它的参数
-field         | 用于动态生成表单组件内部的参数，每个参数指的表单里的组件对应的v-model。执行表单提交时可获取对应的值。
-permission    | 用于权限认证
-callback      | 用于给el-select组件异步请求获取数据
-focus         | true,表示focus时执行callback函数
-change        | true,表示change时执行callback函数
-async         | true,表示开启初始化执行callback函数
-
-
 ### element
 ```js
 //第一种方式
